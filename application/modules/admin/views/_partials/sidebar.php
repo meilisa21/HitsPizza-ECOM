@@ -28,7 +28,7 @@
 
       <!-- Nav Item -->
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('admin/user'); ?>">
+        <a class="nav-link" href="<?php echo base_url('pagination/pagination'); ?>">
         <i class="fas fa-fw fa-user"></i>
           <span>User Account</span></a>
       </li>
