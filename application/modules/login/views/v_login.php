@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="login"><b>Form</b>Login</a>
+            <a href="login"><b>Form</b> Login</a>
         </div>
 		<!-- /.login-logo -->
 		<?php echo $this->session->flashdata('login_failed'); ?>
@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <form action="<?php echo base_url('login/aksi_login'); ?>" method="post">
+                <form action="<?php echo base_url('login/login'); ?>" method="post">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Username" name="username">
                         <div class="input-group-append">
@@ -68,15 +68,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </form>
 
-                <div class="social-auth-links text-center mb-3">
-                    <p>- OR -</p>
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                    </a>
-                    <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                    </a>
-                </div>
                 <!-- /.social-auth-links -->
 
                 <p class="mb-1">
