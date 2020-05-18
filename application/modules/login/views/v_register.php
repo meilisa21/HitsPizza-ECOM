@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="login"><b>Form</b>Register</a>
+    <a href="login"><b>Form</b> Register</a>
   </div>
 
   <div class="card">
@@ -43,14 +43,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-		</div>
 		<div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Username" name="username">
           <div class="input-group-append">
@@ -92,17 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
       </form>
 
-      <div class="social-auth-links text-center">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i>
-          Sign up using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i>
-          Sign up using Google+
-        </a>
-      </div>
+      
 
       <a href="<?php echo base_url('login'); ?>" class="text-center">I already have a membership</a>
     </div>
