@@ -20,22 +20,39 @@ class Login extends MX_Controller{
         }
 	}
 
-	function aksi_login(){
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		$where = array(
-			'username' => $username,
-			'password' => md5($password),
-			);
-		$cek = $this->m_login->cek_login("users",$where)->num_rows();
-		if($cek > 0){
-			$this->session->set_userdata('username', $username);
+	public function login(){
+		$username = $this->input->post('username'); // Ambil isi dari inputan username pada form login
+		$password = md5($this->input->post('password')); // Ambil isi dari inputan password pada form login dan encrypt dengan md5
 
-			redirect(base_url("admin/dashboard"));
-			$this->session->set_flashdata('success', 'Anda Berhasil Login');
+		$user = $this->UserModel->get($username); // Panggil fungsi get yang ada di UserModel.php
+
+		if(empty($user)){ // Jika hasilnya kosong / user tidak ditemukan
+			$this->session->set_flashdata('message', 'Username tidak ditemukan'); // Buat session flashdata
+			redirect(base_url('login')); // Redirect ke halaman login
 		}else{
-			$this->session->set_flashdata('login_failed', '<div class="alert alert-danger">Username Atau Password salah!</div>');
-		   	redirect(base_url('login'));
+			if($password == $user->password){ // Jika password yang diinput sama dengan password yang didatabase
+				$session = array(
+					'authenticated'=>true, // Buat session authenticated dengan value true
+					'username'=>$user->username,  // Buat session username
+					'nama'=>$user->nama, // Buat session nama
+					'role'=>$user->role // Buat session role
+				);
+				
+				$this->session->set_userdata($session); // Buat session sesuai $session
+				switch ($auth->role) {
+					case admin:
+						redirect(base_url("/admin/dashboard"));
+						break;
+					case operator:
+						redirect(base_url("page/page"));
+						break;
+					default:
+						break;
+					}
+			}else{
+				$this->session->set_flashdata('message', 'Password salah'); // Buat session flashdata
+				redirect(base_url('login'));// Redirect ke halaman login
+			}
 		}
 	}
 
@@ -43,7 +60,6 @@ class Login extends MX_Controller{
 		$data['title'] = 'Sign Up';
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
 		$this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|max_length[12]|is_unique[users.username]');
-		$this->form_validation->set_rules('email', 'Email', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[8]');
 		$this->form_validation->set_rules('password2', 'Confirm Password', 'matches[password]');
 
